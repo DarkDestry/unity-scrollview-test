@@ -24,7 +24,6 @@ public class InventoryManager : MonoBehaviour
         {
             var row = Instantiate(inventoryRow, contentHolder);
             row.Init(i);
-            row.name = $"Row {i}";
             inventoryRows[i] = row.gameObject;
         }
         SetContentHeight();
@@ -32,14 +31,10 @@ public class InventoryManager : MonoBehaviour
 
     private void SetContentHeight()
     {
-        var contentHeight = verticalLayoutGroup.spacing * numRows + 10f;
-        contentHolder.sizeDelta = new Vector2(0f, contentHeight);
-        StartCoroutine(DisableLayoutGroupNextFrame());
-    }
-
-    private IEnumerator DisableLayoutGroupNextFrame()
-    {
-        yield return null;
+        LayoutRebuilder.ForceRebuildLayoutImmediate(contentHolder);
+        var contentHeight = verticalLayoutGroup.preferredHeight;
+        var contentWidth = verticalLayoutGroup.preferredWidth;
         verticalLayoutGroup.enabled = false;
+        contentHolder.sizeDelta = new Vector2(contentWidth, contentHeight);
     }
 }

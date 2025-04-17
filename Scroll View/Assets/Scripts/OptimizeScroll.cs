@@ -9,9 +9,6 @@ public class OptimizeScroll : MonoBehaviour
     [SerializeField] private RectTransform viewPort;
     [SerializeField] private ScrollRect scrollRect;
     
-    private const float ItemHeight = 110f; // includes spacing of 10
-    private const float ItemSpacing = 10f;
-    
     [SerializeField] private InventoryManager inventoryManager;
 
     private RectTransform[] rowTrs; 
@@ -52,7 +49,7 @@ public class OptimizeScroll : MonoBehaviour
         foreach (var rowTr in rowTrs)
         {
             rowTr.GetWorldCorners(rowCorners);
-            rowTr.gameObject.SetActive(!(rowCorners[BOTTOM_LEFT].y - ItemHeight > viewPortCorners[TOP_LEFT].y ||
+            rowTr.gameObject.SetActive(!(rowCorners[BOTTOM_LEFT].y > viewPortCorners[TOP_LEFT].y ||
                            rowCorners[TOP_LEFT].y < viewPortCorners[BOTTOM_LEFT].y));
         }
     }

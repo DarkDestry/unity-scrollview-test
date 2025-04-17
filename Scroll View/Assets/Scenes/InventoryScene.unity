@@ -1381,11 +1381,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Padding:
     m_Left: 10
-    m_Right: 0
+    m_Right: 10
     m_Top: 10
     m_Bottom: 10
   m_ChildAlignment: 0
-  m_Spacing: 110
+  m_Spacing: 10
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -1519,7 +1519,7 @@ MonoBehaviour:
   contentHolder: {fileID: 1593921084}
   verticalLayoutGroup: {fileID: 1593921086}
   inventoryRow: {fileID: 2416259030942289835, guid: 640bce65542764fd5ab07fb2d2a0ba6c, type: 3}
-  numRows: 20
+  numRows: 300
   inventoryRows: []
 --- !u!114 &1729351182
 MonoBehaviour:
@@ -1536,9 +1536,6 @@ MonoBehaviour:
   viewPort: {fileID: 777475492}
   scrollRect: {fileID: 1729351178}
   inventoryManager: {fileID: 1729351181}
-  rowPool: []
-  inventoryRowPrefab: {fileID: 5968815572479420485, guid: 640bce65542764fd5ab07fb2d2a0ba6c, type: 3}
-  verticalLayoutGroup: {fileID: 1593921086}
 --- !u!1 &1857200380
 GameObject:
   m_ObjectHideFlags: 0

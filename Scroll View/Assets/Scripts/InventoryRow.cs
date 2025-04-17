@@ -6,6 +6,7 @@ public class InventoryRow : MonoBehaviour
     
     public void Init(int rowIndex)
     {
+        gameObject.name = $"Row {rowIndex}";
         var startIndex = rowIndex * rowItems.Length;
         for (var i = 0; i < rowItems.Length; i++)
         {
