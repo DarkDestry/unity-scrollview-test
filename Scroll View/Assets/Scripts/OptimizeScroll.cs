@@ -20,10 +20,10 @@ public class OptimizeScroll : MonoBehaviour
     {
         scrollRect.onValueChanged.AddListener(HandleScroll);
         
-        StartCoroutine(DelayCullRows());
+        StartCoroutine(DelayLayoutRows());
     }
 
-    IEnumerator DelayCullRows()
+    IEnumerator DelayLayoutRows()
     {
         yield return new WaitForEndOfFrame();
         HandleScroll(Vector2.zero);
@@ -34,8 +34,8 @@ public class OptimizeScroll : MonoBehaviour
         var currentPos = verticalLayoutGroup.transform.localPosition;
         var height = viewPort.rect.height;
         var rowHeight = verticalLayoutGroup.spacing + inventoryManager.RowSize.y; 
-        var startIndex = Mathf.FloorToInt(currentPos.y / rowHeight);
-        var endIndex = Mathf.CeilToInt((currentPos.y + height) / rowHeight);
+        var startIndex = Mathf.Max(Mathf.FloorToInt(currentPos.y / rowHeight), 0);
+        var endIndex = Mathf.Min(Mathf.CeilToInt((currentPos.y + height) / rowHeight), inventoryManager.NumRows);
 
         var toRemoveIndices = new List<int>();
         foreach (var index in rowItems.Keys)
@@ -48,7 +48,7 @@ public class OptimizeScroll : MonoBehaviour
 
         foreach (var index in toRemoveIndices) rowItems.Remove(index);
 
-        for (int i = startIndex; i <= endIndex; i++)
+        for (int i = startIndex; i < endIndex; i++)
         {
             if (rowItems.ContainsKey(i)) continue;
             var row = inventoryManager.InitFromPool(i);

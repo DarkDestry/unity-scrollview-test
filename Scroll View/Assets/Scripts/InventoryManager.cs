@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Profiling;
 using UnityEngine.UI;
@@ -6,19 +7,19 @@ using UnityEngine.UI;
 public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private RectTransform contentHolder;
-    [SerializeField] private RectTransform poolHolder;
     [SerializeField] private VerticalLayoutGroup verticalLayoutGroup;
     [SerializeField] private InventoryRow inventoryRow;
 
     [SerializeField] private int numRows = 10;
     [SerializeField] private int numPoolRows = 10;
-    public GameObject[] inventoryRowPool;
-
+    public Queue<GameObject> inventoryRowPool;
+    
+    public int NumRows => numRows;
     public Vector2 RowSize { get; private set; }
 
     private void Start()
     {
-        inventoryRowPool = new GameObject[numPoolRows];
+        inventoryRowPool = new();
         PopulateInventoryDisplay();
     }
 
@@ -26,7 +27,7 @@ public class InventoryManager : MonoBehaviour
     {
         for (var i = 0; i < numPoolRows; i++)
         {
-            var row = Instantiate(inventoryRow, poolHolder);
+            var row = Instantiate(inventoryRow, contentHolder);
             if (i == 0)
             {
                 LayoutRebuilder.ForceRebuildLayoutImmediate(row.GetComponent<RectTransform>());
@@ -35,7 +36,7 @@ public class InventoryManager : MonoBehaviour
             }
 
             row.gameObject.SetActive(false);
-            inventoryRowPool[i] = row.gameObject;
+            inventoryRowPool.Enqueue(row.gameObject);
         }
 
         SetContentHeight();
@@ -55,14 +56,18 @@ public class InventoryManager : MonoBehaviour
 
     public void ReturnToPool(GameObject go)
     {
-        go.transform.SetParent(poolHolder);
+        inventoryRowPool.Enqueue(go);
         go.SetActive(false);
     }
 
     public InventoryRow InitFromPool(int index)
     {
-        var poolItem = poolHolder.GetChild(0);
-        poolItem.transform.SetParent(contentHolder);
+        if (inventoryRowPool.Count == 0)
+        {
+            var newPoolItem = Instantiate(inventoryRow, contentHolder).gameObject;
+            inventoryRowPool.Enqueue(newPoolItem);
+        }
+        var poolItem = inventoryRowPool.Dequeue();
 
         var rowComponent = poolItem.GetComponent<InventoryRow>();
         rowComponent.Init(index);
