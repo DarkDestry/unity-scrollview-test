@@ -1295,6 +1295,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1071239119}
   m_CullTransparentMesh: 1
+--- !u!1 &1278312039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1278312040}
+  m_Layer: 5
+  m_Name: Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1278312040
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278312039}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1729351177}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1569887202
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,6 +1461,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1278312040}
   - {fileID: 777475492}
   - {fileID: 617594655}
   - {fileID: 1857200381}
@@ -1517,10 +1553,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   contentHolder: {fileID: 1593921084}
+  poolHolder: {fileID: 1278312040}
   verticalLayoutGroup: {fileID: 1593921086}
   inventoryRow: {fileID: 2416259030942289835, guid: 640bce65542764fd5ab07fb2d2a0ba6c, type: 3}
   numRows: 300
-  inventoryRows: []
+  numPoolRows: 10
+  inventoryRowPool: []
 --- !u!114 &1729351182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,6 +1573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewPort: {fileID: 777475492}
   scrollRect: {fileID: 1729351178}
+  verticalLayoutGroup: {fileID: 1593921086}
   inventoryManager: {fileID: 1729351181}
 --- !u!1 &1857200380
 GameObject:
