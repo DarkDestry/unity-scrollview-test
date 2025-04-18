@@ -35,7 +35,8 @@ public class InventoryManager : MonoBehaviour
                 RowSize = new Vector2(rowLayout.preferredWidth, rowLayout.preferredHeight);
             }
 
-            row.gameObject.SetActive(false);
+            row.GetComponent<CanvasGroup>().alpha = 0;
+            // row.gameObject.SetActive(false);
             inventoryRowPool.Enqueue(row.gameObject);
         }
 
@@ -57,7 +58,8 @@ public class InventoryManager : MonoBehaviour
     public void ReturnToPool(GameObject go)
     {
         inventoryRowPool.Enqueue(go);
-        go.SetActive(false);
+        go.GetComponent<CanvasGroup>().alpha = 0;
+        // go.SetActive(false);
     }
 
     public InventoryRow InitFromPool(int index)
@@ -72,7 +74,8 @@ public class InventoryManager : MonoBehaviour
         var rowComponent = poolItem.GetComponent<InventoryRow>();
         rowComponent.Init(index);
 
-        poolItem.gameObject.SetActive(true);
+        poolItem.GetComponent<CanvasGroup>().alpha = 1;
+        // poolItem.gameObject.SetActive(true);
         return rowComponent;
     }
 }

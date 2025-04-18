@@ -1368,8 +1368,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 310, y: -194.39406}
-  m_SizeDelta: {x: 270, y: 91.8529}
+  m_AnchoredPosition: {x: 310, y: -204.72998}
+  m_SizeDelta: {x: 270, y: 71.1811}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1355592515
 MonoBehaviour:
@@ -1518,8 +1518,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 310, y: -195}
-  m_SizeDelta: {x: 250, y: 70.6441}
+  m_AnchoredPosition: {x: 310, y: -203.74577}
+  m_SizeDelta: {x: 250, y: 53.1525}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1507092925
 MonoBehaviour:
@@ -1795,7 +1795,12 @@ MonoBehaviour:
     - Reduced number of triangles from drawing masked off inventory items
 
     -
-    Reduced memory usage from having all inventory items instantiated at once'
+    Reduced memory usage from having all inventory items instantiated at once
+
+
+    4.
+    Avoided lag induced by set active and re-parenting by setting alpha in pooling
+    implementation'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1834,7 +1839,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: -7
   m_wordSpacing: 0
-  m_lineSpacing: -8
+  m_lineSpacing: -15.72
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
